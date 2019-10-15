@@ -21,7 +21,7 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CQuickSort.cpp">
+    <ClCompile Include="QuickSort.cpp">
       <Filter>소스 파일\01. QuickSort</Filter>
     </ClCompile>
   </ItemGroup>
