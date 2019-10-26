@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <queue>
+#include <vector>
 
 class CCalculator
 {
@@ -9,6 +11,9 @@ public:
 	~CCalculator();
 
 public:
-	float Calculate(const char * cEquation);
+	double Calculate(const std::vector<std::string>& cEquation);
+
+private:
+	double CalculatePostFixNumbers(std::queue<std::string>& vecPost);
 };
 

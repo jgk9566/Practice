@@ -11,102 +11,186 @@ CCalculator::~CCalculator()
 {
 }
 
-float CCalculator::Calculate(const char * cEquation)
+double CCalculator::Calculate(const std::vector<std::string>& cEquation)
 {
-	int iCount = (int)strlen(cEquation);
+	int iCount = (int)cEquation.size();	
 
-	std::stack<char> stackTemp;
-	std::stack<char> stackPostfix;
-		
+	std::stack<std::string> stackTemp;
+	std::queue<std::string> queuePostfix;
+
 	for (int i = 0; i < iCount; ++i)
 	{
 		bool bNumber = true;
 		int iOrder = 0;
 
-		switch (cEquation[i])
+		if (cEquation[i] == "+" || cEquation[i] == "-")
 		{
-		case '+':
 			bNumber = false;
-			break;
-		case '-':
-			bNumber = false;
-			break;
-		case '*':
+			iOrder = 0;
+		}
+		else if (cEquation[i] == "*" || cEquation[i] == "/")
+		{
 			bNumber = false;
 			iOrder = 1;
-			break;
-		case '/':
-			break;
+		}
+		else if (cEquation[i] == "(" || cEquation[i] == ")")
+		{
 			bNumber = false;
-			iOrder = 1;
-		case '(':
-			bNumber = false;
-			break;
-		case ')':
-			bNumber = false;
-			break;
-		default:
-			break;
+			iOrder = 2;
 		}
 
 
 		if (bNumber)
 		{
-			stackPostfix.push(cEquation[i]);
+			queuePostfix.push(cEquation[i]);
 		}
 		else
 		{
-			if (cEquation[i] != ')')
+			if (cEquation[i] != ")")
 			{
-				int iTopOrder = 0;
-
-				if (!stackTemp.empty())
+				if (stackTemp.empty())
 				{
-					if (stackTemp.top() == '*' || stackTemp.top() == '/')
-						iTopOrder = 1;
-				}				
-
-				// 스택에 넣기 전에 연산자 우선순위 검사. 우선순위가 같거나 스택에있는 연산자보다 작으면 연산자를 빼서 이동.
-				if (iTopOrder >= iOrder && !stackTemp.empty())
-				{
-					char cTemp = stackTemp.top();
-					stackTemp.pop();
 					stackTemp.push(cEquation[i]);
-
-					stackPostfix.push(cTemp);
-				}				
+				}
+				else if (cEquation[i] == "(")
+				{
+					stackTemp.push(cEquation[i]);
+				}
 				else
 				{
+					// 여기서 연산자 우선순위 체크
+					int iStackOrder = 0;
+					if (stackTemp.top() == "*" || stackTemp.top() == "/")
+					{
+						iStackOrder = 1;
+					}
+
+					if (iStackOrder >= iOrder)
+					{
+						if (stackTemp.top() != "(")
+						{
+							queuePostfix.push(stackTemp.top());
+							stackTemp.pop();
+						}
+					}
+
 					stackTemp.push(cEquation[i]);
 				}
 			}
 			else
 			{
-				while (!stackTemp.empty())
+				while (true)
 				{
-					if (stackTemp.top() == '(')
+					if (stackTemp.empty())
+					{
+						break;
+					}
+					else if (stackTemp.top() == "(")
 					{
 						stackTemp.pop();
 						break;
 					}
-					else
-					{
-						stackPostfix.push(stackTemp.top());
-						stackTemp.pop();
-					}
-				}				
+
+					queuePostfix.push(stackTemp.top());
+					stackTemp.pop();
+				}
 			}
-		}
+		}		
 	}
 
 	while (!stackTemp.empty())
 	{
-		char cTemp = stackTemp.top();
-		
-		stackPostfix.push(cTemp);
-
+		queuePostfix.push(stackTemp.top());
 		stackTemp.pop();
 	}
 
-	return 0.0f;
+	return CalculatePostFixNumbers(queuePostfix);
+}
+
+double CCalculator::CalculatePostFixNumbers(std::queue<std::string>& vecPost)
+{
+	std::stack<float>	stackResult;
+
+	while (!vecPost.empty())
+	{
+		if (vecPost.front() == "+")
+		{
+			if (!stackResult.empty())
+			{
+				float fCalculated = 0;
+
+				// 스택에 쌓인 2개 번호를 빼서 + 연산자와 연산 후 다시 스택에 넣는다.
+				float fNum1 = stackResult.top();
+				stackResult.pop();
+				float fNum2 = stackResult.top();
+				stackResult.pop();
+
+				fCalculated = fNum2 + fNum1;
+
+				stackResult.push(fCalculated);
+			}
+		}
+		else if (vecPost.front() == "-")
+		{
+			if (!stackResult.empty())
+			{
+				float fCalculated = 0;
+
+				// 스택에 쌓인 2개 번호를 빼서 - 연산자와 연산 후 다시 스택에 넣는다.
+				float fNum1 = stackResult.top();
+				stackResult.pop();
+				float fNum2 = stackResult.top();
+				stackResult.pop();
+
+				fCalculated = fNum2 - fNum1;
+
+				stackResult.push(fCalculated);
+			}
+		}
+		else if (vecPost.front() == "*")
+		{
+			if (!stackResult.empty())
+			{
+				float fCalculated = 0;
+
+				// 스택에 쌓인 2개 번호를 빼서 * 연산자와 연산 후 다시 스택에 넣는다.
+				float fNum1 = stackResult.top();
+				stackResult.pop();
+				float fNum2 = stackResult.top();
+				stackResult.pop();
+
+				fCalculated = fNum2 * fNum1;
+
+				stackResult.push(fCalculated);
+			}
+		}
+		else if (vecPost.front() == "/")
+		{
+			if (!stackResult.empty())
+			{
+				float fCalculated = 0;
+
+				// 스택에 쌓인 2개 번호를 빼서 / 연산자와 연산 후 다시 스택에 넣는다.
+				float fNum1 = stackResult.top();
+				stackResult.pop();
+				float fNum2 = stackResult.top();
+				stackResult.pop();
+
+				fCalculated = fNum2 / fNum1;
+
+				stackResult.push(fCalculated);
+			}
+		}
+		else
+		{
+			std::string strNumber = vecPost.front();
+			stackResult.push(atof(strNumber.c_str()));
+		}		
+		
+		vecPost.pop();
+	}
+	
+	float fResult = stackResult.top();
+
+	return fResult;
 }

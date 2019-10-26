@@ -191,12 +191,31 @@ int main()
 
 	CCalculator Calculator;
 
-	char cTesting[] = "(9-1/3)*4";
+	//char cTesting[] = "(9-1/3)*4"; // 34.6667
+	//char cTesting[] = "6-1*3"; // 3
+	//char cTesting[] = "4*(7+2)"; // 36
+	char cTesting[] = "52*(58/9+3-1)/2"; // 219.555556
 
-	Calculator.Calculate(cTesting);
+	std::vector<std::string> vecTesting;
+	vecTesting.push_back("52");
+	vecTesting.push_back("*");
+	vecTesting.push_back("(");
+	vecTesting.push_back("58");
+	vecTesting.push_back("/");
+	vecTesting.push_back("9");
+	vecTesting.push_back("+");
+	vecTesting.push_back("3");
+	vecTesting.push_back("-");
+	vecTesting.push_back("1");
+	vecTesting.push_back(")");
+	vecTesting.push_back("/");
+	vecTesting.push_back("2");
+	
+	double fResult = Calculator.Calculate(vecTesting);
 
-
-
+	cout << fixed;
+	cout.precision(6);
+	cout << fResult << endl;
 
 	DontQuitConsole();
 
