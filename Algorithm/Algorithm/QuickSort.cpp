@@ -24,10 +24,18 @@ void CQuickSort::QuickSort(int * NumList, int iStartIdx, int iEndIdx)
 
 	while (iLeft <= iRight) // 서로 교차될 때 까지.
 	{
-		while (NumList[iLeft] <= NumList[iPivot])
+		while (NumList[iLeft] <= NumList[iPivot] && iLeft <= iEndIdx)
+		{
 			++iLeft;
+
+			// 상위 while 루프를 빠져나오기 위해 iLeft를 먼저 올려준다.
+			if (iLeft == iEndIdx)
+				break;
+		}
 		while (NumList[iRight] >= NumList[iPivot] && iRight > iStartIdx)
+		{
 			--iRight;
+		}
 
 		// 왼쪽 숫자와 오른쪽 숫자가 엇갈린 상태라면 키 값과 교체
 		if (iLeft > iRight)
@@ -47,51 +55,56 @@ void CQuickSort::QuickSort(int * NumList, int iStartIdx, int iEndIdx)
 	QuickSort(NumList, iRight + 1, iEndIdx);
 }
 
-void CQuickSort::QuickSort(int start, int end, int * data)
+void CQuickSort::QuickSort(std::vector<int> &vecData, int iStartIdx, int iEndIdx)
 {
-	if (start >= end)
+	if (iStartIdx >= iEndIdx)
 		return;
 
-	int key = start;
-	int i = start + 1;
-	int j = end;
-	int temp = 0;
+	int iPivotIdx = iStartIdx;
+	int iLeftIdx = iPivotIdx + 1;
+	int iRightIdx = iEndIdx;
 
-	while (i <= j)
+	while (iLeftIdx <= iRightIdx)
 	{
-		while (i <= end && data[i] <= data[key])
+		while (vecData[iLeftIdx] <= vecData[iPivotIdx] && iLeftIdx < iEndIdx)
 		{
-			++i;
+			++iLeftIdx;			
 		}
-		while (j > start && data[j] >= data[key])
+		while (vecData[iRightIdx] >= vecData[iPivotIdx] && iRightIdx > iStartIdx)
 		{
-			--j;
+			--iRightIdx;
 		}
 
-		if (i > j)
+		if (iRightIdx < iLeftIdx) // 엊갈린 상태
 		{
-			Swap(data, j, key);
-			//temp = data[j];
-			//data[j] = data[key];
-			//data[key] = temp;
+			Swap(vecData, iRightIdx, iPivotIdx);
 		}
 		else
 		{
-			Swap(data, i, j);
-			//temp = data[i];
-			//data[i] = data[j];
-			//data[j] = temp;
-		}		
+			Swap(vecData, iRightIdx, iLeftIdx);
+		}
+
+		if (iLeftIdx == iRightIdx)
+			break;
 	}
 
-	QuickSort(start, j - 1, data);
-	QuickSort(j + 1, end, data);
+	QuickSort(vecData, iStartIdx, iRightIdx - 1);
+	QuickSort(vecData, iRightIdx + 1, iEndIdx);
 }
+
+
 
 void CQuickSort::Swap(int* iData, int iIdxNum1, int iIdxNum2)
 {
 	int iTemp = iData[iIdxNum1];
 	iData[iIdxNum1] = iData[iIdxNum2];
 	iData[iIdxNum2] = iTemp;
+}
+
+void CQuickSort::Swap(std::vector<int> &vecData, int iNum1, int iNum2)
+{		
+	int iTemp = vecData[iNum1];
+	vecData[iNum1] = vecData[iNum2];
+	vecData[iNum2] = iTemp;
 }
 
