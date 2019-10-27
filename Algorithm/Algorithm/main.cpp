@@ -2,6 +2,7 @@
 
 #include "QuickSort.h"
 #include "Calculator.h"
+#include "List.h"
 
 using namespace std;
 
@@ -216,6 +217,29 @@ int main()
 	cout << fixed;
 	cout.precision(6);
 	cout << fResult << endl;
+
+
+	CList<int> m_pList;
+
+	m_pList.Push_Back(10);
+	m_pList.Push_Back(9);
+	m_pList.Push_Back(4);
+	m_pList.Push_Back(2);
+
+	char input[100];
+	scanf_s("%s", input);
+	printf("Hello Goorm! Your input is %s", input);
+	
+	int iNum = atoi(input);
+
+	for (int i = 1; i <= iNum; ++i)
+	{
+		if (iNum % i == 0)
+		{
+			printf("%d ", i);
+		}
+	}
+
 
 	DontQuitConsole();
 
