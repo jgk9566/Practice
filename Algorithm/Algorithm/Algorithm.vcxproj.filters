@@ -22,6 +22,9 @@
     <Filter Include="소스 파일\03. List">
       <UniqueIdentifier>{c4bc3091-c879-45c6-8492-1234b7d9b6d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\04. InsertionSort">
+      <UniqueIdentifier>{ddba24c2-066e-4895-ad38-6b8b8663ba1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,6 +36,9 @@
     <ClCompile Include="Calculator.cpp">
       <Filter>소스 파일\02. Calculator</Filter>
     </ClCompile>
+    <ClCompile Include="InsertionSort.cpp">
+      <Filter>소스 파일\04. InsertionSort</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QuickSort.h">
@@ -43,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="List.h">
       <Filter>소스 파일\03. List</Filter>
+    </ClInclude>
+    <ClInclude Include="InsertionSort.h">
+      <Filter>소스 파일\04. InsertionSort</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

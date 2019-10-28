@@ -116,11 +116,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Calculator.cpp" />
+    <ClCompile Include="InsertionSort.cpp" />
     <ClCompile Include="QuickSort.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Calculator.h" />
+    <ClInclude Include="InsertionSort.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="QuickSort.h" />
   </ItemGroup>
