@@ -25,6 +25,9 @@
     <Filter Include="소스 파일\04. InsertionSort">
       <UniqueIdentifier>{ddba24c2-066e-4895-ad38-6b8b8663ba1f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\05. Smilegate Test">
+      <UniqueIdentifier>{f6f7e46a-7c12-43f5-b2e9-59204656b6ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -39,6 +42,9 @@
     <ClCompile Include="InsertionSort.cpp">
       <Filter>소스 파일\04. InsertionSort</Filter>
     </ClCompile>
+    <ClCompile Include="SmilegateAlgorithm.cpp">
+      <Filter>소스 파일\05. Smilegate Test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QuickSort.h">
@@ -52,6 +58,12 @@
     </ClInclude>
     <ClInclude Include="InsertionSort.h">
       <Filter>소스 파일\04. InsertionSort</Filter>
+    </ClInclude>
+    <ClInclude Include="SmilegateAlgorithm.h">
+      <Filter>소스 파일\05. Smilegate Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
