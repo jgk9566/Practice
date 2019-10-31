@@ -161,14 +161,71 @@ void Push(T& container, int iCount)
 	}
 }
 
+class A
+{
+public:
+	A()
+	{
+		std::cout << "A constructor" << std::endl;
+	}
+	~A()
+	{
+		std::cout << "A destructor" << std::endl;
+	}
+
+protected:
+	int m_iCount = 10;
+
+public:
+	void Function()
+	{
+		--m_iCount;
+	}
+};
+
+class B :
+	public A
+{
+public:
+	B()
+	{
+		std::cout << "B constructor" << std::endl;
+	}
+	~B()
+	{
+		std::cout << "B destructor" << std::endl;
+	}
+
+private:
+	int iMemeber = 11;
+
+public:
+	virtual void Function()
+	{
+		++m_iCount;
+	}
+	void Print()
+	{
+		std::cout << m_iCount << std::endl;
+	}
+};
+
 int main()
 {
-	std::vector<Test3> m_vecInt;
-	m_vecInt.reserve(100000);
-	std::list<Test3> m_listInt;
+	B* bb = new B();
+	A* aa = reinterpret_cast<A*>(bb);
+	aa->Function();
+	bb->Print();
+	delete bb;
 
-	Push<std::vector<Test3>, Test3>(m_vecInt, 100000);
-	Push<std::list<Test3>, Test3>(m_listInt, 100000);
+	int test = 10;
+	const int* a = &test;
+	
+	int* b = const_cast<int*>(a);
+
+	*b = 100;
+
+	std::cout << test << std::endl;
 
 	DontQuitConsole();
 	
