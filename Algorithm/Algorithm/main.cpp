@@ -12,6 +12,8 @@
 #include <string.h>
 #include <vector>
 #include <list>
+#include <memory> // for the smart pointers
+#include <functional> // for std::function
 
 
 // 출력을 위한 함수
@@ -210,22 +212,54 @@ public:
 	}
 };
 
+class CEntity
+{
+public:
+	CEntity()
+	{
+		std::cout << "Constructor" << std::endl;
+	}
+	~CEntity()
+	{
+		std::cout << "Destructor" << std::endl;
+	}
+
+public:
+	float x;
+	float y;
+
+public:
+	virtual void PrintFunc()
+	{
+	}
+};
+
+class CPlayer : public CEntity
+{
+public:
+	void Print()
+	{
+		std::cout << "Successfully Printed" << std::endl;
+	}
+};
+
+class CEnemy : public CEntity
+{
+
+};
+
+static std::function<void(CEntity, int)>	m_Function;
+
+void Add(int x, int y)
+{
+	std::cout << "X +" << "Y" << " =" << x + y << std::endl;
+}
+
 int main()
 {
-	B* bb = new B();
-	A* aa = reinterpret_cast<A*>(bb);
-	aa->Function();
-	bb->Print();
-	delete bb;
-
-	int test = 10;
-	const int* a = &test;
+	CSmilegateAlgorithm	m_Smilegatealgo;
 	
-	int* b = const_cast<int*>(a);
-
-	*b = 100;
-
-	std::cout << test << std::endl;
+	m_Smilegatealgo.UIEvent();
 
 	DontQuitConsole();
 	
