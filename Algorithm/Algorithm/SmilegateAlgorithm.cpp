@@ -243,14 +243,3 @@ void CSmilegateAlgorithm::UIEvent()
 
 	return;
 }
-
-char * CSmilegateAlgorithm::StrTok(char * string, const char * change, char ** context)
-{
-	const char* text;
-	static char* c = NULL;
-
-
-
-	return nullptr;
-}
-
