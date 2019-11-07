@@ -12,6 +12,7 @@
 #include <string.h>
 #include <vector>
 #include <list>
+#include <functional>
 
 
 // 출력을 위한 함수
@@ -144,8 +145,6 @@ struct Test3
 template <typename T, typename TT>
 void Push(T& container, int iCount)
 {
-	
-
 	TT test;
 	//CTimer Time2;
 	for (int i = 0; i < iCount; ++i)
@@ -161,71 +160,48 @@ void Push(T& container, int iCount)
 	}
 }
 
-class A
+class ABC
 {
 public:
-	A()
+	ABC() = default;
+	ABC(const int& aa) 	: 
+		iNumber(aa),
+		strName("Unknown")
 	{
-		std::cout << "A constructor" << std::endl;
 	}
-	~A()
-	{
-		std::cout << "A destructor" << std::endl;
-	}
-
-protected:
-	int m_iCount = 10;
-
-public:
-	void Function()
-	{
-		--m_iCount;
-	}
-};
-
-class B :
-	public A
-{
-public:
-	B()
-	{
-		std::cout << "B constructor" << std::endl;
-	}
-	~B()
-	{
-		std::cout << "B destructor" << std::endl;
+	ABC(const std::string& Name)	:
+		iNumber(0),
+		strName(Name)
+	{		
 	}
 
 private:
-	int iMemeber = 11;
+	int iNumber;
+	std::string strName;
 
 public:
-	virtual void Function()
+	void Print(int a)
 	{
-		++m_iCount;
-	}
-	void Print()
-	{
-		std::cout << m_iCount << std::endl;
+		std::cout << "Integer : " << a << std::endl;
 	}
 };
 
+
+
 int main()
 {
-	B* bb = new B();
-	A* aa = reinterpret_cast<A*>(bb);
-	aa->Function();
-	bb->Print();
-	delete bb;
+	ABC* aTest = new ABC();
+	void(ABC::*PrintFunc)(int a);
+	PrintFunc = &ABC::Print;
+	(aTest->*PrintFunc)(5);
 
-	int test = 10;
-	const int* a = &test;
+	ABC bTest;
+	void (ABC::*Function)(int a);
+	Function = &ABC::Print;
+	(bTest.*Function)(10);
 	
-	int* b = const_cast<int*>(a);
+	std::function<void(int a)>	m_Function;
 
-	*b = 100;
-
-	std::cout << test << std::endl;
 
 	DontQuitConsole();
 	
