@@ -125,6 +125,7 @@
     <ClInclude Include="Calculator.h" />
     <ClInclude Include="InsertionSort.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="Macro.h" />
     <ClInclude Include="QuickSort.h" />
     <ClInclude Include="SmilegateAlgorithm.h" />
     <ClInclude Include="Timer.h" />

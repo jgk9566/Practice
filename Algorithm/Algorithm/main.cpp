@@ -21,20 +21,24 @@ void Print(const int* data, int iCount)
 {
 	for (int i = 0; i < iCount; ++i)
 	{
-		std::cout << data[i] << ", ";
-	}
-	
-	std::cout << std::endl;
+		if (i == iCount - 1)
+			std::cout << data[i] << std::endl;
+		else
+			std::cout << data[i] << ", ";
+	}	
 }
 
-void Print(std::vector<int> data, int iCount)
+void Print(std::vector<int> data)
 {
+	int iCount = data.size();
+
 	for (int i = 0; i < iCount; ++i)
 	{
-		std::cout << data[i] << ", ";
+		if (i == iCount - 1)
+			std::cout << data[i] << std::endl;
+		else
+			std::cout << data[i] << ", ";
 	}
-
-	std::cout << std::endl;
 }
 
 float Calculate(int iNum1, int iNum2, char cSign)
@@ -93,8 +97,6 @@ public:
 	~CTesting()
 	{
 	}
-
-	//a = 10;
 };
 
 template <typename T, int b>
@@ -146,8 +148,6 @@ struct Test3
 template <typename T, typename TT>
 void Push(T& container, int iCount)
 {
-	
-
 	TT test;
 	//CTimer Time2;
 	for (int i = 0; i < iCount; ++i)
@@ -163,54 +163,33 @@ void Push(T& container, int iCount)
 	}
 }
 
-class A
+class ABC
 {
 public:
-	A()
+	ABC() = default;
+	ABC(const int& aa) 	: 
+		iNumber(aa),
+		strName("Unknown")
 	{
-		std::cout << "A constructor" << std::endl;
 	}
-	~A()
-	{
-		std::cout << "A destructor" << std::endl;
-	}
-
-protected:
-	int m_iCount = 10;
-
-public:
-	void Function()
-	{
-		--m_iCount;
-	}
-};
-
-class B :
-	public A
-{
-public:
-	B()
-	{
-		std::cout << "B constructor" << std::endl;
-	}
-	~B()
-	{
-		std::cout << "B destructor" << std::endl;
+	ABC(const std::string& Name)	:
+		iNumber(0),
+		strName(Name)
+	{		
 	}
 
 private:
-	int iMemeber = 11;
+	int iNumber;
+	std::string strName;
 
 public:
-	virtual void Function()
+	void Print(int a)
 	{
-		++m_iCount;
-	}
-	void Print()
-	{
-		std::cout << m_iCount << std::endl;
+		std::cout << "Integer : " << a << std::endl;
 	}
 };
+
+
 
 class CEntity
 {
@@ -245,23 +224,31 @@ public:
 
 class CEnemy : public CEntity
 {
+	static std::function<void(CEntity, int)>	m_Function;
 
+	void Add(int x, int y)
+	{
+		std::cout << "X +" << "Y" << " =" << x + y << std::endl;
+	}	
 };
-
-static std::function<void(CEntity, int)>	m_Function;
-
-void Add(int x, int y)
-{
-	std::cout << "X +" << "Y" << " =" << x + y << std::endl;
-}
 
 int main()
 {
-	CSmilegateAlgorithm	m_Smilegatealgo;
-	
-	m_Smilegatealgo.UIEvent();
+	int Array[] = { 5, 6, 3, 2, 10, 8, 9, 7, 1, 4 };
+	std::vector<int> vecData = { 5, 6, 3, 2, 10, 8, 9, 7, 1, 4 };
+
+	CQuickSort QuickSortArray(Array, 10);
+	CQuickSort QuickSortVector(vecData);
+
+	QuickSortArray.QuickSortRef(Array, 0, 9);
+	QuickSortVector.QuickSortVector(vecData, 0, 9);
+
+	std::cout << "After Sorting(array) : ";
+	Print(Array, 10);
+	std::cout << "After Sorting(vector) : ";
+	Print(vecData);
 
 	DontQuitConsole();
-	
+
 	return 0;
 }
