@@ -17,7 +17,8 @@ private:
 
 };
 
-CTimer::CTimer()
+CTimer::CTimer()	:
+	m_Duration(0)
 {
 	m_Start = std::chrono::high_resolution_clock::now();
 }
