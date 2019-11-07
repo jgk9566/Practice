@@ -93,8 +93,6 @@ public:
 	~CTesting()
 	{
 	}
-
-	//a = 10;
 };
 
 template <typename T, int b>
