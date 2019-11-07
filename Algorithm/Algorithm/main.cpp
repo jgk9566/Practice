@@ -21,20 +21,24 @@ void Print(const int* data, int iCount)
 {
 	for (int i = 0; i < iCount; ++i)
 	{
-		std::cout << data[i] << ", ";
-	}
-	
-	std::cout << std::endl;
+		if (i == iCount - 1)
+			std::cout << data[i] << std::endl;
+		else
+			std::cout << data[i] << ", ";
+	}	
 }
 
-void Print(std::vector<int> data, int iCount)
+void Print(std::vector<int> data)
 {
+	int iCount = data.size();
+
 	for (int i = 0; i < iCount; ++i)
 	{
-		std::cout << data[i] << ", ";
+		if (i == iCount - 1)
+			std::cout << data[i] << std::endl;
+		else
+			std::cout << data[i] << ", ";
 	}
-
-	std::cout << std::endl;
 }
 
 float Calculate(int iNum1, int iNum2, char cSign)
@@ -225,15 +229,26 @@ class CEnemy : public CEntity
 	void Add(int x, int y)
 	{
 		std::cout << "X +" << "Y" << " =" << x + y << std::endl;
-	}
+	}	
+};
 
-	int main()
-	{
-		CSmilegateAlgorithm	m_Smilegatealgo;
+int main()
+{
+	int Array[] = { 5, 6, 3, 2, 10, 8, 9, 7, 1, 4 };
+	std::vector<int> vecData = { 5, 6, 3, 2, 10, 8, 9, 7, 1, 4 };
 
-		m_Smilegatealgo.UIEvent();
+	CQuickSort QuickSortArray(Array, 10);
+	CQuickSort QuickSortVector(vecData);
+
+	QuickSortArray.QuickSortRef(Array, 0, 9);
+	QuickSortVector.QuickSortVector(vecData, 0, 9);
+
+	std::cout << "After Sorting(array) : ";
+	Print(Array, 10);
+	std::cout << "After Sorting(vector) : ";
+	Print(vecData);
 
 	DontQuitConsole();
-	
+
 	return 0;
 }

@@ -62,5 +62,8 @@
     <ClInclude Include="InsertionSort.h">
       <Filter>소스 파일\01. Sort Algorithm</Filter>
     </ClInclude>
+    <ClInclude Include="Macro.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

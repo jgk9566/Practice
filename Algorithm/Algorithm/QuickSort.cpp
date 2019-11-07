@@ -1,61 +1,81 @@
 #include "QuickSort.h"
 
 
-
 CQuickSort::CQuickSort()
 {
 }
 
+CQuickSort::CQuickSort(int* NumList, int iNumElements)
+{	
+	std::cout << "Original Numbers(array) : ";
+	
+	for (int i = 0; i < iNumElements; ++i)
+	{
+		if (i == iNumElements - 1)
+			std::cout << NumList[i] << std::endl;
+		else
+			std::cout << NumList[i] << ", ";
+	}
+}
+
+CQuickSort::CQuickSort(std::vector<int> vecData)
+{
+	int iCount = vecData.size();
+	std::cout << "Original Numbers(vector) : ";
+
+	for (int i = 0; i < iCount; ++i)
+	{
+		if (i == iCount - 1)
+			std::cout << vecData[i] << std::endl;
+		else
+			std::cout << vecData[i] << ", ";
+	}
+}
 
 CQuickSort::~CQuickSort()
 {
 }
 
-void CQuickSort::QuickSort(int * NumList, int iStartIdx, int iEndIdx)
+void CQuickSort::QuickSortRef(int * NumList, int iStartIdx, int iEndIdx)
 {
 	// 원소가 1개인 경우 (인덱스가 1개일 때) 그대로 둔다.
 	if (iStartIdx >= iEndIdx)
 		return;
 
-	int iPivot = iStartIdx;
-	int iLeft = iPivot + 1; // 피봇 보다 큰 숫자를 찾는다.
-	int iRight = iEndIdx; // 피봇 보다 작은 숫자를 찾는다.
-	int iTemp = 0;
+	int iPivotIdx = iStartIdx;
+	int iLeftIdx = iPivotIdx + 1; // 피봇 보다 큰 숫자를 찾는다.
+	int iRightIdx = iEndIdx; // 피봇 보다 작은 숫자를 찾는다.
 
-	while (iLeft <= iRight) // 서로 교차될 때 까지.
+	while (iLeftIdx <= iRightIdx) // 서로 교차될 때 까지.
 	{
-		while (NumList[iLeft] <= NumList[iPivot] && iLeft <= iEndIdx)
+		while (iLeftIdx <= iEndIdx && NumList[iLeftIdx] <= NumList[iPivotIdx])
 		{
-			++iLeft;
-
-			// 상위 while 루프를 빠져나오기 위해 iLeft를 먼저 올려준다.
-			if (iLeft == iEndIdx)
-				break;
+			++iLeftIdx;
 		}
-		while (NumList[iRight] >= NumList[iPivot] && iRight > iStartIdx)
+		while (iRightIdx > iStartIdx && NumList[iRightIdx] >= NumList[iPivotIdx])
 		{
-			--iRight;
+			--iRightIdx;
 		}
 
 		// 왼쪽 숫자와 오른쪽 숫자가 엇갈린 상태라면 키 값과 교체
-		if (iLeft > iRight)
+		if (iLeftIdx > iRightIdx)
 		{
-			Swap(NumList, iRight, iPivot);
+			Swap(NumList, iRightIdx, iPivotIdx);
 		}
 		// 아니라면 왼쪽 숫자와 오른쪽 숫자를 교체해준다.
 		else
 		{
-			Swap(NumList, iLeft, iRight);
+			Swap(NumList, iLeftIdx, iRightIdx);
 		}
 	}
 
 	// 재귀를 돌리면서 왼쪽 그룹 정렬
-	QuickSort(NumList, iStartIdx, iRight - 1);
+	QuickSortRef(NumList, iStartIdx, iRightIdx - 1);
 	// 재귀를 돌리면서 오른쪽 그룹 정렬
-	QuickSort(NumList, iRight + 1, iEndIdx);
+	QuickSortRef(NumList, iRightIdx + 1, iEndIdx);
 }
 
-void CQuickSort::QuickSort(std::vector<int> &vecData, int iStartIdx, int iEndIdx)
+void CQuickSort::QuickSortVector(std::vector<int> &vecData, int iStartIdx, int iEndIdx)
 {
 	if (iStartIdx >= iEndIdx)
 		return;
@@ -66,30 +86,27 @@ void CQuickSort::QuickSort(std::vector<int> &vecData, int iStartIdx, int iEndIdx
 
 	while (iLeftIdx <= iRightIdx)
 	{
-		while (vecData[iLeftIdx] <= vecData[iPivotIdx] && iLeftIdx < iEndIdx)
-		{
-			++iLeftIdx;			
-		}
-		while (vecData[iRightIdx] >= vecData[iPivotIdx] && iRightIdx > iStartIdx)
-		{
+		while (iLeftIdx <= iEndIdx && vecData[iLeftIdx] <= vecData[iPivotIdx])
+			++iLeftIdx;
+		while (iRightIdx > iStartIdx && vecData[iRightIdx] >= vecData[iPivotIdx])
 			--iRightIdx;
-		}
 
-		if (iRightIdx < iLeftIdx) // 엊갈린 상태
+		if (iLeftIdx > iRightIdx)
 		{
-			Swap(vecData, iRightIdx, iPivotIdx);
+			int iTemp = vecData[iPivotIdx];
+			vecData[iPivotIdx] = vecData[iRightIdx];
+			vecData[iRightIdx] = iTemp;
 		}
 		else
 		{
-			Swap(vecData, iRightIdx, iLeftIdx);
+			int iTemp = vecData[iLeftIdx];
+			vecData[iLeftIdx] = vecData[iRightIdx];
+			vecData[iRightIdx] = iTemp;
 		}
-
-		if (iLeftIdx == iRightIdx)
-			break;
 	}
 
-	QuickSort(vecData, iStartIdx, iRightIdx - 1);
-	QuickSort(vecData, iRightIdx + 1, iEndIdx);
+	QuickSortVector(vecData, iStartIdx, iRightIdx - 1);
+	QuickSortVector(vecData, iRightIdx + 1, iEndIdx);
 }
 
 
