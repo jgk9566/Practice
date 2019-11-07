@@ -167,55 +167,79 @@ void CSmilegateAlgorithm::UIEvent()
 	char cInputNM[100] = {};
 	gets_s(cInputNM);
 	
-	int iIdx = 0;
-	char cN[3];
-	char cM[5];
+	char* cM;
+	char* cN = strtok_s(cInputNM, " ", &cM);
 
-	while (cInputNM[iIdx] != ' ')
-	{
-		cN[iIdx] = cInputNM[iIdx];
-		++iIdx;
-	}
-	cN[iIdx] = '\0';
+	int iM, iN;
+	iM = atoi(cM);
+	iN = atoi(cN);
 
-	int i = 0;
-	while (cInputNM[iIdx + 1] != '\0')
-	{
-		cM[i] = cInputNM[iIdx + 1];
-		++iIdx;
-		++i;
-	}
-	cM[i] = '\0';
-
-	int iN = atoi(cN);
-	int iM = atoi(cM);
-
-	
+	std::vector<UIButton>	vecButtonInfo;
 
 	for (int i = 0; i < iN; ++i)
 	{
-		// 버튼 위치 입력 받기
-		char RectLRBT[20] = {};
-		gets_s(RectLRBT);
-		
-		int iIndex = 0;
-		
+		char cInputLRBT[100] = {};
+		gets_s(cInputLRBT);
 
+		char* cRectInfo;
+		char* cRectNext;
+		cRectInfo = strtok_s(cInputLRBT, " ", &cRectNext);
+		
+		UIButton Button;
+
+		Button.L = atoi(cRectInfo);
+
+		cRectInfo = strtok_s(cRectNext, " ", &cRectNext);
+		Button.R = atoi(cRectInfo);
+
+		cRectInfo = strtok_s(cRectNext, " ", &cRectNext);
+		Button.B = atoi(cRectInfo);
+
+		Button.T = atoi(cRectNext);
+
+		Button.iButtonNumber = i + 1;
+
+		vecButtonInfo.push_back(Button);
 	}
 
+	std::vector<ClickPos>	vecClickPos;
 
+	for (int i = 0; i < iM; ++i)
+	{
+		char cInputXY[100] = {};
+		gets_s(cInputXY);
 
+		char* cRectInfo;
+		char* cRectNext;
+		cRectInfo = strtok_s(cInputXY, " ", &cRectNext);
+
+		ClickPos	Pos;
+		Pos.X = atoi(cRectInfo);
+		Pos.Y = atoi(cRectNext);
+
+		vecClickPos.push_back(Pos);
+	}
+	
+	// 버튼 만큼 돌면서 클릭한 지점이 좌표에 들어오는지 검사
+	for (int i = 0; i < iM; ++i)
+	{
+		for (int j = iN - 1; j >= 0; --j)
+		{
+			// 클릭좌표 x와 사각형 L, R / 클릭좌표 y와 사각형 B, T 검사
+			if (vecButtonInfo[j].L <= vecClickPos[i].X && vecButtonInfo[j].R >= vecClickPos[i].X &&
+				vecButtonInfo[j].B <= vecClickPos[i].Y && vecButtonInfo[j].T >= vecClickPos[i].Y)
+			{
+				++vecButtonInfo[j].iClickedCount;
+				break;
+			}
+		}
+	}
+
+	// 출력
+	for (int i = 0; i < vecButtonInfo.size(); ++i)
+	{
+		std::cout << "Button #" << vecButtonInfo[i].iButtonNumber << ": " << vecButtonInfo[i].iClickedCount << std::endl;
+	}
 
 	return;
 }
-
-char * CSmilegateAlgorithm::StrTok(char * string, const char * change, char ** context)
-{
-	const char* text;
-	static char* c = NULL;
-
-
-
-	return nullptr;
-}
-

@@ -12,7 +12,8 @@
 #include <string.h>
 #include <vector>
 #include <list>
-#include <functional>
+#include <memory> // for the smart pointers
+#include <functional> // for std::function
 
 
 // 출력을 위한 함수
@@ -145,6 +146,8 @@ struct Test3
 template <typename T, typename TT>
 void Push(T& container, int iCount)
 {
+	
+
 	TT test;
 	//CTimer Time2;
 	for (int i = 0; i < iCount; ++i)
@@ -160,48 +163,103 @@ void Push(T& container, int iCount)
 	}
 }
 
-class ABC
+class A
 {
 public:
-	ABC() = default;
-	ABC(const int& aa) 	: 
-		iNumber(aa),
-		strName("Unknown")
+	A()
 	{
+		std::cout << "A constructor" << std::endl;
 	}
-	ABC(const std::string& Name)	:
-		iNumber(0),
-		strName(Name)
-	{		
+	~A()
+	{
+		std::cout << "A destructor" << std::endl;
 	}
 
-private:
-	int iNumber;
-	std::string strName;
+protected:
+	int m_iCount = 10;
 
 public:
-	void Print(int a)
+	void Function()
 	{
-		std::cout << "Integer : " << a << std::endl;
+		--m_iCount;
 	}
 };
 
+class B :
+	public A
+{
+public:
+	B()
+	{
+		std::cout << "B constructor" << std::endl;
+	}
+	~B()
+	{
+		std::cout << "B destructor" << std::endl;
+	}
 
+private:
+	int iMemeber = 11;
+
+public:
+	virtual void Function()
+	{
+		++m_iCount;
+	}
+	void Print()
+	{
+		std::cout << m_iCount << std::endl;
+	}
+};
+
+class CEntity
+{
+public:
+	CEntity()
+	{
+		std::cout << "Constructor" << std::endl;
+	}
+	~CEntity()
+	{
+		std::cout << "Destructor" << std::endl;
+	}
+
+public:
+	float x;
+	float y;
+
+public:
+	virtual void PrintFunc()
+	{
+	}
+};
+
+class CPlayer : public CEntity
+{
+public:
+	void Print()
+	{
+		std::cout << "Successfully Printed" << std::endl;
+	}
+};
+
+class CEnemy : public CEntity
+{
+
+};
+
+static std::function<void(CEntity, int)>	m_Function;
+
+void Add(int x, int y)
+{
+	std::cout << "X +" << "Y" << " =" << x + y << std::endl;
+}
 
 int main()
 {
-	ABC* aTest = new ABC();
-	void(ABC::*PrintFunc)(int a);
-	PrintFunc = &ABC::Print;
-	(aTest->*PrintFunc)(5);
-
-	ABC bTest;
-	void (ABC::*Function)(int a);
-	Function = &ABC::Print;
-	(bTest.*Function)(10);
+	CSmilegateAlgorithm	m_Smilegatealgo;
 	
-	std::function<void(int a)>	m_Function;
-
+	m_Smilegatealgo.UIEvent();
 
 	DontQuitConsole();
 	
