@@ -109,6 +109,40 @@ void CQuickSort::QuickSortVector(std::vector<int> &vecData, int iStartIdx, int i
 	QuickSortVector(vecData, iRightIdx + 1, iEndIdx);
 }
 
+void CQuickSort::QuickSort(int* pData, int iStartIdx, int iEndIdx)
+{
+	if (iStartIdx >= iEndIdx)
+		return;
+
+	int iPivot = iStartIdx;
+	int iLeft = iPivot + 1;
+	int iRight = iEndIdx;
+
+	while (iLeft <= iRight)
+	{
+		while (iLeft <= iEndIdx && pData[iLeft] <= pData[iPivot])
+			++iLeft;
+		while (iRight > iStartIdx&& pData[iRight] >= pData[iPivot])
+			--iRight;
+
+		if (iLeft > iRight)
+		{
+			int iTemp = pData[iPivot];
+			pData[iPivot] = pData[iRight];
+			pData[iRight] = iTemp;
+		}
+		else
+		{
+			int iTemp = pData[iLeft];
+			pData[iLeft] = pData[iRight];
+			pData[iRight] = iTemp;
+		}
+	}
+
+	QuickSort(pData, iStartIdx, iRight - 1);
+	QuickSort(pData, iRight + 1, iEndIdx);
+}
+
 
 
 void CQuickSort::Swap(int* iData, int iIdxNum1, int iIdxNum2)

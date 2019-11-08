@@ -213,7 +213,7 @@ void TestingQuickSort()
 	CQuickSort QuickSortArray(Array, 10);
 	CQuickSort QuickSortVector(vecData);
 
-	QuickSortArray.QuickSortRef(Array, 0, 9);
+	QuickSortArray.QuickSort(Array, 0, 9);
 	QuickSortVector.QuickSortVector(vecData, 0, 9);
 
 	std::cout << "After Sorting(array) : ";
