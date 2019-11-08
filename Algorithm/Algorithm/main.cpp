@@ -28,6 +28,7 @@ template <typename T, typename TT> void Push(T& container, int iCount);
 
 // Function for Testing Quick Sort
 void TestingQuickSort();
+void TestingInsertionSort();
 
 
 // Classes and Structures
@@ -43,7 +44,8 @@ class CEnemy;
 
 int main()
 {
-	TestingQuickSort();
+	//TestingQuickSort();
+	TestingInsertionSort();
 
 	DontQuitConsole();
 
@@ -218,6 +220,22 @@ void TestingQuickSort()
 
 	std::cout << "After Sorting(array) : ";
 	Print(Array, 10);
+	std::cout << "After Sorting(vector) : ";
+	Print(vecData);
+}
+
+void TestingInsertionSort()
+{
+	int Array[] = { 5, 6, 3, 2, 10, 8, 9, 7, 1, 4, 15, 13, 17, 19, 20, 11, 12, 18, 14, 16 };
+	std::vector<int> vecData = { 5, 6, 3, 2, 10, 8, 9, 7, 1, 4 };
+
+	CInsertionSort InsertionSort;
+
+	InsertionSort.InsertionSort(Array, 20);
+	InsertionSort.InsertionSort(vecData, vecData.size());
+
+	std::cout << "After Sorting(array) : ";
+	Print(Array, 20);
 	std::cout << "After Sorting(vector) : ";
 	Print(vecData);
 }

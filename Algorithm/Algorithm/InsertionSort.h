@@ -1,4 +1,7 @@
 #pragma once
+
+#include "Macro.h"
+
 class CInsertionSort
 {
 public:
@@ -6,6 +9,8 @@ public:
 	~CInsertionSort();
 
 public:
-	void InsertionSort(int * iArr, int iSize);
+	void InsertionSortRef(int * iArr, int iSize);
+	void InsertionSort(std::vector<int>& vecData, int iSize);
+	void InsertionSort(int* iArr, int iSize);
 };
 
