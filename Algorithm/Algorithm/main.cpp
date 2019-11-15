@@ -30,6 +30,10 @@ template <typename T, typename TT> void Push(T& container, int iCount);
 void TestingQuickSort();
 void TestingInsertionSort();
 
+// Random Number Generator
+void RandomNumberGenerator(int* array, int iArrSize);
+void RandomNumberGenerator(std::vector<int>* vecOutput, int iCount);
+
 
 // Classes and Structures
 struct _tagVector2;
@@ -44,7 +48,7 @@ class CEnemy;
 
 int main()
 {
-	//TestingQuickSort();
+	TestingQuickSort();
 	TestingInsertionSort();
 
 	DontQuitConsole();
@@ -204,35 +208,72 @@ class CEnemy : public CEntity
 	void Add(int x, int y)
 	{
 		std::cout << "X +" << "Y" << " =" << x + y << std::endl;
-	}
+	}	
 };
+
+void RandomNumberGenerator(std::vector<int>* vecOutput, int iCount)
+{
+	for (int i = 0; i < iCount; ++i)
+	{
+		vecOutput->push_back(i);
+	}
+
+	std::vector<int>::iterator	iterStart = vecOutput->begin();
+	std::vector<int>::iterator	iterEnd = vecOutput->end();
+
+	std::random_shuffle(iterStart, iterEnd);
+}
+
+void RandomNumberGenerator(int* array, int iArrSize)
+{
+	for (int i = 0; i < iArrSize; ++i)
+	{
+		array[i] = i;
+	}
+
+	// std::begin() and std::end() can be used, but pointers do not work
+
+	std::random_shuffle(&array[0], &array[iArrSize - 1]);
+}
+
 
 void TestingQuickSort()
 {
-	int Array[] = { 5, 6, 3, 2, 10, 8, 9, 7, 1, 4 };
-	std::vector<int> vecData = { 5, 6, 3, 2, 10, 8, 9, 7, 1, 4 };
+	std::cout << "==================== Quick Sort Testing ====================" << std::endl;
 
-	CQuickSort QuickSortArray(Array, 10);
-	CQuickSort QuickSortVector(vecData);
+	int Array[30];
+	std::vector<int> vecData;
 
-	QuickSortArray.QuickSort(Array, 0, 9);
-	QuickSortVector.QuickSortVector(vecData, 0, 9);
+	// Generate random numbers and print
+	RandomNumberGenerator(&vecData, 30);
+	RandomNumberGenerator(Array, 30);
+	Print(vecData);
+	Print(Array, 30);
 
+	// Sort those random numbers
+	CQuickSort QuickSort;
+	QuickSort.QuickSort1(Array, 0, 29);
+	QuickSort.QuickSort1(vecData, 0, static_cast<int>(vecData.size() - 1));
+
+	// Print sorted numbers
 	std::cout << "After Sorting(array) : ";
-	Print(Array, 10);
+	Print(Array, 30);
 	std::cout << "After Sorting(vector) : ";
 	Print(vecData);
 }
 
 void TestingInsertionSort()
 {
+	std::cout << "==================== Insertion Sort Testing ====================" << std::endl;
+
 	int Array[] = { 5, 6, 3, 2, 10, 8, 9, 7, 1, 4, 15, 13, 17, 19, 20, 11, 12, 18, 14, 16 };
 	std::vector<int> vecData = { 5, 6, 3, 2, 10, 8, 9, 7, 1, 4 };
+	
+	CInsertionSort InsertionSortArray(Array, 20);
+	CInsertionSort InsertionSortVector(vecData);
 
-	CInsertionSort InsertionSort;
-
-	InsertionSort.InsertionSort(Array, 20);
-	InsertionSort.InsertionSort(vecData, vecData.size());
+	InsertionSortArray.InsertionSort1(Array, 20);
+	InsertionSortVector.InsertionSort1(vecData);
 
 	std::cout << "After Sorting(array) : ";
 	Print(Array, 20);

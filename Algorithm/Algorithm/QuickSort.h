@@ -15,6 +15,8 @@ public:
 	void QuickSortRef(int* NumList, int iStartIdx, int iEndIdx);
 	void QuickSortVector(std::vector<int> &vecData, int iStartIdx, int iEndIdx);
 	void QuickSort(int* pData, int iStartIdx, int iEndIdx);
+	void QuickSort1(int* pData, int iStart, int iEnd);
+	void QuickSort1(std::vector<int>& vecData, int iStart, int iEnd);
 
 private:
 	void Swap(int* iData, int iNum1, int iNum2);

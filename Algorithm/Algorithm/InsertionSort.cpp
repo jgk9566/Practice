@@ -6,6 +6,32 @@ CInsertionSort::CInsertionSort()
 {
 }
 
+CInsertionSort::CInsertionSort(int* iArr, int iNumOfElements)
+{
+	std::cout << "Original Numbers(array) : ";
+
+	for (int i = 0; i < iNumOfElements; ++i)
+	{
+		if (i == iNumOfElements - 1)
+			std::cout << iArr[i] << std::endl;
+		else
+			std::cout << iArr[i] << ", ";
+	}
+}
+
+CInsertionSort::CInsertionSort(std::vector<int> vecData)
+{
+	std::cout << "Original Numbers(vector) : ";
+
+	for (int i = 0; i < vecData.size(); ++i)
+	{
+		if (i == vecData.size() - 1)
+			std::cout << vecData[i] << std::endl;
+		else
+			std::cout << vecData[i] << ", ";
+	}
+}
+
 
 CInsertionSort::~CInsertionSort()
 {
@@ -68,24 +94,74 @@ void CInsertionSort::InsertionSort(int* iArr, int iSize)
 {
 	int iKey = 0;
 
-	for (int iKeyIdx = 1; iKeyIdx < iSize; ++iKeyIdx)
+	for (int iCompareIdx = 1; iCompareIdx < iSize; ++iCompareIdx)
 	{
-		iKey = iArr[iKeyIdx];
+		iKey = iArr[iCompareIdx];
 
-		for (int iCompareIdx = iKeyIdx - 1; iCompareIdx >= 0; --iCompareIdx)
+		for (int iLeftIdx = iCompareIdx - 1; iLeftIdx >= 0; --iLeftIdx)
 		{
-			if (iArr[iCompareIdx] > iKey)
+			if (iArr[iLeftIdx] > iKey)
 			{
-				iArr[iCompareIdx + 1] = iArr[iCompareIdx];
+				iArr[iLeftIdx + 1] = iArr[iLeftIdx];
 
-				if (iCompareIdx == 0)
-				{
-					iArr[iCompareIdx] = iKey;
-				}
+				if (iLeftIdx == 0)
+					iArr[iLeftIdx] = iKey;
 			}
 			else
 			{
-				iArr[iCompareIdx + 1] = iKey;
+				iArr[iLeftIdx + 1] = iKey;
+				break;
+			}
+		}
+	}
+}
+
+void CInsertionSort::InsertionSort1(int* pArr, int iSize)
+{
+	int iKey = 0;
+
+	for (int iCompareIdx = 1; iCompareIdx < iSize; ++iCompareIdx)
+	{
+		iKey = pArr[iCompareIdx];
+
+		for (int iLeftIdx = iCompareIdx - 1; iLeftIdx >= 0; --iLeftIdx)
+		{
+			if (pArr[iLeftIdx] > iKey)
+			{
+				pArr[iLeftIdx + 1] = pArr[iLeftIdx];
+
+				if (iLeftIdx == 0)
+					pArr[iLeftIdx] = iKey;
+			}
+			else
+			{
+				pArr[iLeftIdx + 1] = iKey;
+				break;
+			}
+		}
+	}
+}
+
+void CInsertionSort::InsertionSort1(std::vector<int>& vecData)
+{
+	int iKey = 0;
+
+	for (int iCompare = 1; iCompare < vecData.size(); ++iCompare)
+	{
+		iKey = vecData[iCompare];
+
+		for (int iLeft = iCompare - 1; iLeft >= 0; --iLeft)
+		{
+			if (vecData[iLeft] >= iKey)
+			{
+				vecData[iLeft + 1] = vecData[iLeft];
+
+				if (iLeft == 0)
+					vecData[iLeft] = iKey;
+			}
+			else
+			{
+				vecData[iLeft + 1] = iKey;
 				break;
 			}
 		}
