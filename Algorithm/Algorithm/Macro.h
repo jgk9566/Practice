@@ -1,6 +1,5 @@
 #pragma once
 
-#include <iostream>
-#include <vector>
+#include "pch.h"
 
 #define NUMELEMENT(x) sizeof(x) / sizeof(x[0])

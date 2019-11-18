@@ -25,6 +25,9 @@
     <Filter Include="소스 파일\03. Data Structure">
       <UniqueIdentifier>{c4bc3091-c879-45c6-8492-1234b7d9b6d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Precompiled Header">
+      <UniqueIdentifier>{0c223df3-70e0-4eee-94d6-85fcafa7b9f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -41,6 +44,9 @@
     </ClCompile>
     <ClCompile Include="InsertionSort.cpp">
       <Filter>소스 파일\01. Sort Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>헤더 파일\Precompiled Header</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="Macro.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>헤더 파일\Precompiled Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

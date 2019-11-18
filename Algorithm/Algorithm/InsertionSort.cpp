@@ -1,6 +1,5 @@
+#include "pch.h"
 #include "InsertionSort.h"
-
-
 
 CInsertionSort::CInsertionSort()
 {
@@ -162,6 +161,58 @@ void CInsertionSort::InsertionSort1(std::vector<int>& vecData)
 			else
 			{
 				vecData[iLeft + 1] = iKey;
+				break;
+			}
+		}
+	}
+}
+
+void CInsertionSort::InsertionSort2(int* pArr, int iSize)
+{
+	int iKey = 0;
+
+	for (int i = 1; i < iSize; ++i)
+	{
+		iKey = pArr[i];
+
+		for (int iCompare = i - 1; iCompare >= 0; --iCompare)
+		{
+			if (pArr[iCompare] >= iKey)
+			{
+				pArr[iCompare + 1] = pArr[iCompare];
+
+				if (iCompare == 0)
+					pArr[iCompare] = iKey;
+			}
+			else
+			{
+				pArr[iCompare + 1] = iKey;
+				break;
+			}
+		}
+	}
+}
+
+void CInsertionSort::InsertionSort2(std::vector<int>& vecData)
+{
+	int iKeyValue = 0;
+
+	for (int iKeyIdx = 1; iKeyIdx < vecData.size(); ++iKeyIdx)
+	{
+		iKeyValue = vecData[iKeyIdx];
+
+		for (int iCompare = iKeyIdx - 1; iCompare >= 0; --iCompare)
+		{
+			if (vecData[iCompare] >= iKeyValue)
+			{
+				vecData[iCompare + 1] = vecData[iCompare];
+
+				if (iCompare == 0)
+					vecData[iCompare] = iKeyValue;
+			}
+			else
+			{
+				vecData[iCompare + 1] = iKeyValue;
 				break;
 			}
 		}

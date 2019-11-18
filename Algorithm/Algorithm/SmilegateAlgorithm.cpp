@@ -1,6 +1,5 @@
+#include "pch.h"
 #include "SmilegateAlgorithm.h"
-#include <iostream>
-#include <stack>
 
 CSmilegateAlgorithm::CSmilegateAlgorithm()
 {

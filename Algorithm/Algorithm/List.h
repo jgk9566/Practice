@@ -1,6 +1,6 @@
 #pragma once
 
-#include <assert.h>
+#include "Macro.h"
 
 template <typename T>
 class CListNode

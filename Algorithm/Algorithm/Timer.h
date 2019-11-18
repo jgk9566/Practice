@@ -1,7 +1,7 @@
 #pragma once
 
+#include "pch.h"
 #include <chrono>
-#include <iostream>
 
 class CTimer
 {

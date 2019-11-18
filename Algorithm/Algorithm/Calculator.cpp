@@ -1,11 +1,9 @@
+#include "pch.h"
 #include "Calculator.h"
-#include <stack>
-
 
 CCalculator::CCalculator()
 {
 }
-
 
 CCalculator::~CCalculator()
 {

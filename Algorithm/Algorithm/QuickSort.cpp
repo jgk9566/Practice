@@ -1,5 +1,5 @@
+#include "pch.h"
 #include "QuickSort.h"
-
 
 CQuickSort::CQuickSort()
 {
@@ -212,6 +212,74 @@ void CQuickSort::QuickSort1(std::vector<int>& vecData, int iStart, int iEnd)
 	// Àç±Í
 	QuickSort1(vecData, iStart, iRight - 1);
 	QuickSort1(vecData, iRight + 1, iEnd);
+}
+
+void CQuickSort::QuickSort2(int* pData, int iStartIdx, int iEndIdx)
+{
+	if (iStartIdx >= iEndIdx)
+		return;
+
+	int iPivot = iStartIdx;
+	int iLeft = iPivot + 1;
+	int iRight = iEndIdx;
+
+	while (iLeft <= iRight)
+	{
+		while (iLeft <= iEndIdx && pData[iLeft] <= pData[iPivot])
+			++iLeft;
+		while (iRight > iStartIdx && pData[iRight] >= pData[iPivot])
+			--iRight;
+
+		if (iLeft > iRight)
+		{
+			int iTemp = pData[iRight];
+			pData[iRight] = pData[iPivot];
+			pData[iPivot] = iTemp;
+		}
+		else
+		{
+			int iTemp = pData[iRight];
+			pData[iRight] = pData[iLeft];
+			pData[iLeft] = iTemp;
+		}
+	}
+
+	QuickSort2(pData, iStartIdx, iRight - 1);
+	QuickSort2(pData, iRight + 1, iEndIdx);
+}
+
+void CQuickSort::QuickSort2(std::vector<int>& vecData, int iStart, int iEnd)
+{
+	if (iStart >= iEnd)
+		return;
+
+	int iPivot = iStart;
+	int iLeft = iPivot + 1;
+	int iRight = iEnd;
+
+	while (iLeft <= iRight)
+	{
+		while (iLeft <= iEnd && vecData[iLeft] <= vecData[iPivot])
+			++iLeft;
+		while (iRight > iStart&& vecData[iRight] >= vecData[iPivot])
+			--iRight;
+
+		if (iLeft > iRight)
+		{
+			int iTemp = vecData[iRight];
+			vecData[iRight] = vecData[iPivot];
+			vecData[iPivot] = iTemp;
+		}
+		else
+		{
+			int iTemp = vecData[iRight];
+			vecData[iRight] = vecData[iPivot];
+			vecData[iPivot] = iTemp;
+		}
+	}
+
+	QuickSort2(vecData, iStart, iRight - 1);
+	QuickSort2(vecData, iRight + 1, iEnd);
 }
 
 void CQuickSort::Swap(int* iData, int iIdxNum1, int iIdxNum2)

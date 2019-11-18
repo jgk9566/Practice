@@ -1,5 +1,6 @@
-#include <iostream>
-#include <stack>
+
+#include "pch.h"
+#include "Macro.h"
 
 #include "QuickSort.h"
 #include "Calculator.h"
@@ -7,13 +8,6 @@
 #include "InsertionSort.h"
 #include "SmilegateAlgorithm.h"
 #include "Timer.h"
-
-#include <string>
-#include <string.h>
-#include <vector>
-#include <list>
-#include <memory> // for the smart pointers
-#include <functional> // for std::function
 
 
 // Function for preventing closing the consol winow rightaway
@@ -51,6 +45,7 @@ int main()
 	TestingQuickSort();
 	TestingInsertionSort();
 
+	DontQuitConsole();
 	DontQuitConsole();
 
 	return 0;
@@ -252,8 +247,8 @@ void TestingQuickSort()
 
 	// Sort those random numbers
 	CQuickSort QuickSort;
-	QuickSort.QuickSort1(Array, 0, 29);
-	QuickSort.QuickSort1(vecData, 0, static_cast<int>(vecData.size() - 1));
+	QuickSort.QuickSort2(Array, 0, 29);
+	QuickSort.QuickSort2(vecData, 0, static_cast<int>(vecData.size() - 1));
 
 	// Print sorted numbers
 	std::cout << "After Sorting(array) : ";
@@ -272,8 +267,8 @@ void TestingInsertionSort()
 	CInsertionSort InsertionSortArray(Array, 20);
 	CInsertionSort InsertionSortVector(vecData);
 
-	InsertionSortArray.InsertionSort1(Array, 20);
-	InsertionSortVector.InsertionSort1(vecData);
+	InsertionSortArray.InsertionSort2(Array, 20);
+	InsertionSortVector.InsertionSort2(vecData);
 
 	std::cout << "After Sorting(array) : ";
 	Print(Array, 20);
