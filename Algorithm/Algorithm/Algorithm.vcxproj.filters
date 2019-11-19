@@ -48,6 +48,9 @@
     <ClCompile Include="pch.cpp">
       <Filter>헤더 파일\Precompiled Header</Filter>
     </ClCompile>
+    <ClCompile Include="SelectionSort.cpp">
+      <Filter>소스 파일\01. Sort Algorithm</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QuickSort.h">
@@ -73,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>헤더 파일\Precompiled Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectionSort.h">
+      <Filter>소스 파일\01. Sort Algorithm</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

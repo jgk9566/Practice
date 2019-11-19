@@ -134,6 +134,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="SelectionSort.cpp" />
     <ClCompile Include="SmilegateAlgorithm.cpp" />
     <ClCompile Include="InsertionSort.cpp" />
     <ClCompile Include="QuickSort.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="Macro.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="QuickSort.h" />
+    <ClInclude Include="SelectionSort.h" />
     <ClInclude Include="SmilegateAlgorithm.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>

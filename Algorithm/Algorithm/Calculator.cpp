@@ -182,7 +182,7 @@ double CCalculator::CalculatePostFixNumbers(std::queue<std::string>& vecPost)
 		else
 		{
 			std::string strNumber = vecPost.front();
-			stackResult.push(atof(strNumber.c_str()));
+			stackResult.push(static_cast<float>(atof(strNumber.c_str())));
 		}		
 		
 		vecPost.pop();

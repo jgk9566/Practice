@@ -8,6 +8,7 @@
 #include "InsertionSort.h"
 #include "SmilegateAlgorithm.h"
 #include "Timer.h"
+#include "SelectionSort.h"
 
 
 // Function for preventing closing the consol winow rightaway
@@ -23,6 +24,7 @@ template <typename T, typename TT> void Push(T& container, int iCount);
 // Function for Testing Quick Sort
 void TestingQuickSort();
 void TestingInsertionSort();
+void TestingSelectionSort();
 
 // Random Number Generator
 void RandomNumberGenerator(int* array, int iArrSize);
@@ -39,19 +41,17 @@ class CPlayer;
 class CEnemy;
 
 
-
 int main()
 {
+	// functions for testing
 	TestingQuickSort();
 	TestingInsertionSort();
+	TestingSelectionSort();
 
-	DontQuitConsole();
 	DontQuitConsole();
 
 	return 0;
 }
-
-
 
 
 void Print(const int* data, int iCount)
@@ -247,7 +247,7 @@ void TestingQuickSort()
 
 	// Sort those random numbers
 	CQuickSort QuickSort;
-	QuickSort.QuickSort2(Array, 0, 29);
+	QuickSort.QuickSort3(Array, 0, 29);
 	QuickSort.QuickSort2(vecData, 0, static_cast<int>(vecData.size() - 1));
 
 	// Print sorted numbers
@@ -267,11 +267,29 @@ void TestingInsertionSort()
 	CInsertionSort InsertionSortArray(Array, 20);
 	CInsertionSort InsertionSortVector(vecData);
 
-	InsertionSortArray.InsertionSort2(Array, 20);
+	InsertionSortArray.InsertionSort3(Array, 20);
 	InsertionSortVector.InsertionSort2(vecData);
 
 	std::cout << "After Sorting(array) : ";
 	Print(Array, 20);
 	std::cout << "After Sorting(vector) : ";
 	Print(vecData);
+}
+
+void TestingSelectionSort()
+{
+	std::cout << "==================== Selection Sort Testing ====================" << std::endl;
+
+	int iArray[30];
+
+	RandomNumberGenerator(iArray, 30);
+
+	std::cout << "Before Sorting : ";
+	Print(iArray, 30);
+
+	CSelectionSort pSelectionSort;
+	pSelectionSort.SelectionSort(iArray, 30);
+
+	std::cout << "After Sorting : ";
+	Print(iArray, 30);
 }

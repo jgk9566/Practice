@@ -18,5 +18,6 @@ public:
 	void InsertionSort1(std::vector<int>& vecData);
 	void InsertionSort2(int* pArr, int iSize);
 	void InsertionSort2(std::vector<int>& vecData);
+	void InsertionSort3(int* pArr, int iSize);
 };
 

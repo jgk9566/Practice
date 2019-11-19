@@ -218,3 +218,29 @@ void CInsertionSort::InsertionSort2(std::vector<int>& vecData)
 		}
 	}
 }
+
+void CInsertionSort::InsertionSort3(int* pArr, int iSize)
+{
+	int iKeyValue = 0;
+
+	for (int iKey = 1; iKey < iSize; ++iKey)
+	{
+		iKeyValue = pArr[iKey];
+
+		for (int iLeft = iKey - 1; iLeft >= 0; --iLeft)
+		{
+			if (pArr[iLeft] >= iKeyValue)
+			{
+				pArr[iLeft + 1] = pArr[iLeft];
+
+				if (iLeft == 0)
+					pArr[iLeft] = iKeyValue;
+			}
+			else
+			{
+				pArr[iLeft + 1] = iKeyValue;
+				break;
+			}
+		}
+	}
+}
