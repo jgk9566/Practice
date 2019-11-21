@@ -14,7 +14,7 @@ private:
 
 public:
 	const std::vector<std::vector<int>>& GetRandomRectVector();
-	void PrintInputPositions();
+	void PrintInputPositions();	
 
 private:
 	void GenerateRandomRect();
