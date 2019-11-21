@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Calculator.cpp" />
+    <ClCompile Include="LineDemoTest.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -143,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="Calculator.h" />
     <ClInclude Include="InsertionSort.h" />
+    <ClInclude Include="LineDemoTest.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="pch.h" />

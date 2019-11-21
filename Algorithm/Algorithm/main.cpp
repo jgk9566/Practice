@@ -9,6 +9,7 @@
 #include "SmilegateAlgorithm.h"
 #include "Timer.h"
 #include "SelectionSort.h"
+#include "LineDemoTest.h"
 
 
 // Function for preventing closing the consol winow rightaway
@@ -25,6 +26,7 @@ template <typename T, typename TT> void Push(T& container, int iCount);
 void TestingQuickSort();
 void TestingInsertionSort();
 void TestingSelectionSort();
+void TestingLineDemoAlgorithm();
 
 // Random Number Generator
 void RandomNumberGenerator(int* array, int iArrSize);
@@ -47,6 +49,8 @@ int main()
 	TestingQuickSort();
 	TestingInsertionSort();
 	TestingSelectionSort();
+
+	TestingLineDemoAlgorithm();
 
 	DontQuitConsole();
 
@@ -292,4 +296,14 @@ void TestingSelectionSort()
 
 	std::cout << "After Sorting : ";
 	Print(iArray, 30);
+}
+
+void TestingLineDemoAlgorithm()
+{
+	std::cout << "============ Line Studio Demo Test ============" << std::endl;
+
+	CLineDemoTest RectTest = CLineDemoTest();
+	RectTest.PrintInputPositions();
+
+	RectTest.FindFinalRectPosition(RectTest.GetRandomRectVector());
 }

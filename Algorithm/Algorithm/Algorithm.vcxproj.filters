@@ -28,6 +28,9 @@
     <Filter Include="헤더 파일\Precompiled Header">
       <UniqueIdentifier>{0c223df3-70e0-4eee-94d6-85fcafa7b9f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\05. Practice Algorithm">
+      <UniqueIdentifier>{12714078-7227-41a3-938e-e66c05501db6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -50,6 +53,9 @@
     </ClCompile>
     <ClCompile Include="SelectionSort.cpp">
       <Filter>소스 파일\01. Sort Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="LineDemoTest.cpp">
+      <Filter>소스 파일\05. Practice Algorithm</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +85,9 @@
     </ClInclude>
     <ClInclude Include="SelectionSort.h">
       <Filter>소스 파일\01. Sort Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="LineDemoTest.h">
+      <Filter>소스 파일\05. Practice Algorithm</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
