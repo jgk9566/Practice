@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Macro.h"
+//#include "Macro.h"
 
 class CInsertionSort
 {
@@ -19,5 +19,6 @@ public:
 	void InsertionSort2(int* pArr, int iSize);
 	void InsertionSort2(std::vector<int>& vecData);
 	void InsertionSort3(int* pArr, int iSize);
+	void InsertionSort3(std::vector<int>& vecData);
 };
 

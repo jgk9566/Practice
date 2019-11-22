@@ -14,7 +14,6 @@ private:
 	std::chrono::time_point<std::chrono::steady_clock> m_Start;
 	std::chrono::time_point<std::chrono::steady_clock> m_End;
 	std::chrono::duration<float> m_Duration;
-
 };
 
 CTimer::CTimer()	:

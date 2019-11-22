@@ -1,4 +1,3 @@
-
 #include "pch.h"
 #include "Macro.h"
 
@@ -31,11 +30,14 @@ void RandomNumberGenerator(int* array, int iArrSize);
 void RandomNumberGenerator(std::vector<int>* vecOutput, int iCount);
 
 
+// Set console size
+void SetColsoleSize(int iWidth, int iHieght);
+
 // Classes and Structures
 struct _tagVector2;
 
 template<typename T, int a> class CTesting;
-class ABC;
+class ABCD;
 class CEntity;
 class CPlayer;
 class CEnemy;
@@ -43,6 +45,13 @@ class CEnemy;
 
 int main()
 {
+	SetColsoleSize(1200, 540);
+
+	//ABCD* enty = new ABCD;
+
+	/*ABCD aa;
+	aa.PrintMyself();*/
+
 	// functions for testing
 	TestingQuickSort();
 	TestingInsertionSort();
@@ -137,16 +146,18 @@ void Push(T& container, int iCount)
 	}
 }
 
-class ABC
+class ABCD
 {
 public:
-	ABC() = default;
-	ABC(const int& aa) :
+	ABCD()
+	{
+	} // = default;
+	ABCD(const int& aa) :
 		iNumber(aa),
 		strName("Unknown")
 	{
 	}
-	ABC(const std::string& Name) :
+	ABCD(const std::string& Name) :
 		iNumber(0),
 		strName(Name)
 	{
@@ -160,6 +171,11 @@ public:
 	void Print(int a)
 	{
 		std::cout << "Integer : " << a << std::endl;
+	}
+	void PrintMyself()
+	{
+		std::cout << "Number : " << iNumber << std::endl;
+		std::cout << "Name : " << strName << std::endl;
 	}
 };
 
@@ -203,9 +219,12 @@ class CEnemy : public CEntity
 	void Add(int x, int y)
 	{
 		std::cout << "X +" << "Y" << " =" << x + y << std::endl;
-	}	
+	}
 };
 
+// Creates random numbers
+// *vecOutput : stl vector<int> type that you want to store data.
+// iCount : number of elements that you want to generate.
 void RandomNumberGenerator(std::vector<int>* vecOutput, int iCount)
 {
 	for (int i = 0; i < iCount; ++i)
@@ -219,6 +238,9 @@ void RandomNumberGenerator(std::vector<int>* vecOutput, int iCount)
 	std::random_shuffle(iterStart, iterEnd);
 }
 
+// Creates random numbers
+// array : array that you want to store data.
+// iArrSize : size of array.
 void RandomNumberGenerator(int* array, int iArrSize)
 {
 	for (int i = 0; i < iArrSize; ++i)
@@ -231,11 +253,19 @@ void RandomNumberGenerator(int* array, int iArrSize)
 	std::random_shuffle(&array[0], &array[iArrSize - 1]);
 }
 
+void SetColsoleSize(int iWidth, int iHeight)
+{
+	HWND hConsole = GetConsoleWindow();
+
+	RECT ConsoleRect;
+	GetWindowRect(hConsole, &ConsoleRect);
+
+	MoveWindow(hConsole, ConsoleRect.left, ConsoleRect.top, iWidth, iHeight, TRUE);
+}
 
 void TestingQuickSort()
 {
 	std::cout << "==================== Quick Sort Testing ====================" << std::endl;
-
 	int Array[30];
 	std::vector<int> vecData;
 
@@ -248,7 +278,7 @@ void TestingQuickSort()
 	// Sort those random numbers
 	CQuickSort QuickSort;
 	QuickSort.QuickSort3(Array, 0, 29);
-	QuickSort.QuickSort2(vecData, 0, static_cast<int>(vecData.size() - 1));
+	QuickSort.QuickSort3(vecData, 0, static_cast<int>(vecData.size() - 1));
 
 	// Print sorted numbers
 	std::cout << "After Sorting(array) : ";
@@ -261,17 +291,20 @@ void TestingInsertionSort()
 {
 	std::cout << "==================== Insertion Sort Testing ====================" << std::endl;
 
-	int Array[] = { 5, 6, 3, 2, 10, 8, 9, 7, 1, 4, 15, 13, 17, 19, 20, 11, 12, 18, 14, 16 };
-	std::vector<int> vecData = { 5, 6, 3, 2, 10, 8, 9, 7, 1, 4 };
-	
-	CInsertionSort InsertionSortArray(Array, 20);
+	int Array[30];
+	std::vector<int> vecData;
+
+	RandomNumberGenerator(Array, 30);
+	RandomNumberGenerator(&vecData, 30);
+
+	CInsertionSort InsertionSortArray(Array, 30);
 	CInsertionSort InsertionSortVector(vecData);
 
-	InsertionSortArray.InsertionSort3(Array, 20);
-	InsertionSortVector.InsertionSort2(vecData);
+	InsertionSortArray.InsertionSort3(Array, 30);
+	InsertionSortVector.InsertionSort3(vecData);
 
 	std::cout << "After Sorting(array) : ";
-	Print(Array, 20);
+	Print(Array, 30);
 	std::cout << "After Sorting(vector) : ";
 	Print(vecData);
 }
@@ -281,15 +314,22 @@ void TestingSelectionSort()
 	std::cout << "==================== Selection Sort Testing ====================" << std::endl;
 
 	int iArray[30];
+	std::vector<int> vecData;
 
 	RandomNumberGenerator(iArray, 30);
+	RandomNumberGenerator(&vecData, 30);
 
-	std::cout << "Before Sorting : ";
+	std::cout << "Before Sorting (array) : ";
 	Print(iArray, 30);
+	std::cout << "Before Sorting (vector) : ";
+	Print(vecData);
 
 	CSelectionSort pSelectionSort;
 	pSelectionSort.SelectionSort(iArray, 30);
+	pSelectionSort.SelectionSort(vecData);
 
-	std::cout << "After Sorting : ";
+	std::cout << "After Sorting (array) : ";
 	Print(iArray, 30);
+	std::cout << "After Sorting (vector) : ";
+	Print(vecData);
 }

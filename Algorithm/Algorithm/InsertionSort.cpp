@@ -34,6 +34,7 @@ CInsertionSort::CInsertionSort(std::vector<int> vecData)
 
 CInsertionSort::~CInsertionSort()
 {
+	
 }
 
 void CInsertionSort::InsertionSortRef(int * iArr, int iSize)
@@ -239,6 +240,32 @@ void CInsertionSort::InsertionSort3(int* pArr, int iSize)
 			else
 			{
 				pArr[iLeft + 1] = iKeyValue;
+				break;
+			}
+		}
+	}
+}
+
+void CInsertionSort::InsertionSort3(std::vector<int>& vecData)
+{
+	int iKey = 0;
+
+	for (int iKeyIdx = 1; iKeyIdx < static_cast<int>(vecData.size()); ++iKeyIdx)
+	{
+		iKey = vecData[iKeyIdx];
+
+		for (int iCompareIdx = iKeyIdx - 1; iCompareIdx >= 0; --iCompareIdx)
+		{
+			if (vecData[iCompareIdx] >= iKey)
+			{
+				vecData[iCompareIdx + 1] = vecData[iCompareIdx];
+
+				if (iCompareIdx == 0)
+					vecData[iCompareIdx] = iKey;
+			}
+			else
+			{
+				vecData[iCompareIdx + 1] = iKey;
 				break;
 			}
 		}

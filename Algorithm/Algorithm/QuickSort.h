@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Macro.h"
+//#include "Macro.h"
 
 class CQuickSort
 {
@@ -19,6 +19,7 @@ public:
 	void QuickSort2(int* pData, int iStartIdx, int iEndIdx);
 	void QuickSort2(std::vector<int>& vecData, int iStart, int iEnd);
 	void QuickSort3(int* pData, int iStart, int iEnd);
+	void QuickSort3(std::vector<int>& vecData, int iStartIdx, int iEndIdx);
 
 private:
 	void Swap(int* iData, int iNum1, int iNum2);

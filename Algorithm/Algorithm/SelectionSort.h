@@ -1,4 +1,5 @@
 #pragma once
+
 class CSelectionSort
 {
 
@@ -8,6 +9,7 @@ public:
 
 public:
 	void SelectionSort(int* pData, int iSize);
+	void SelectionSort(std::vector<int>& vecData);
 
 };
 
