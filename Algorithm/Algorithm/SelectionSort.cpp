@@ -48,3 +48,21 @@ void CSelectionSort::SelectionSort(std::vector<int>& vecData)
 	}
 }
 
+void CSelectionSort::SelectionSort2(int* pData, int iSize)
+{
+	for (int i = 0; i < iSize; ++i)
+	{
+		int iSmallestIdx = i;
+
+		for (int j = i + 1; j < iSize; ++j)
+		{
+			if (pData[j] < pData[iSmallestIdx])
+				iSmallestIdx = j;
+		}
+
+		int iTemp = pData[iSmallestIdx];
+		pData[iSmallestIdx] = pData[i];
+		pData[i] = iTemp;
+	}
+}
+

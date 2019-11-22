@@ -281,7 +281,7 @@ void TestingQuickSort()
 
 	// Sort those random numbers
 	CQuickSort QuickSort;
-	QuickSort.QuickSort3(Array, 0, 29);
+	QuickSort.QuickSort4(Array, 0, 29);
 	QuickSort.QuickSort3(vecData, 0, static_cast<int>(vecData.size() - 1));
 
 	// Print sorted numbers
@@ -304,7 +304,7 @@ void TestingInsertionSort()
 	CInsertionSort InsertionSortArray(Array, 30);
 	CInsertionSort InsertionSortVector(vecData);
 
-	InsertionSortArray.InsertionSort3(Array, 30);
+	InsertionSortArray.InsertionSort4(Array, 30);
 	InsertionSortVector.InsertionSort3(vecData);
 
 	std::cout << "After Sorting(array) : ";
@@ -329,7 +329,7 @@ void TestingSelectionSort()
 	Print(vecData);
 
 	CSelectionSort pSelectionSort;
-	pSelectionSort.SelectionSort(iArray, 30);
+	pSelectionSort.SelectionSort2(iArray, 30);
 	pSelectionSort.SelectionSort(vecData);
 
 	std::cout << "After Sorting (array) : ";
@@ -337,6 +337,7 @@ void TestingSelectionSort()
 	std::cout << "After Sorting (vector) : ";
 	Print(vecData);
 }
+
 void TestingLineDemoAlgorithm()
 {
 	std::cout << "============ Line Studio Demo Test ============" << std::endl;
@@ -345,4 +346,7 @@ void TestingLineDemoAlgorithm()
 	RectTest.PrintInputPositions();
 
 	RectTest.FindFinalRectPosition(RectTest.GetRandomRectVector());
+
+	std::vector<int> vector;
+
 }

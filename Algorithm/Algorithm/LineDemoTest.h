@@ -8,6 +8,7 @@ public:
 
 public:
 	void FindFinalRectPosition(const std::vector<std::vector<int>>& vecInput);
+	void FindTheLargestNumber(std::vector<int> vecNumber);
 
 private:
 	std::vector<std::vector<int>> m_vecRandomRect;
