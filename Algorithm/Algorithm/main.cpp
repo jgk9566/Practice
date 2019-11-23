@@ -343,10 +343,103 @@ void TestingLineDemoAlgorithm()
 	std::cout << "============ Line Studio Demo Test ============" << std::endl;
 
 	CLineDemoTest RectTest = CLineDemoTest();
-	RectTest.PrintInputPositions();
+	
+	//"CBD"
+	//["BACDE", "CBADF", "AECB", "BDA"]
+	std::string inputA = "CBD";
+	std::vector<std::string> vecInput;
+	vecInput.push_back("BACDE");
+	vecInput.push_back("CBADF"); // true
+	vecInput.push_back("AECB"); // true
+	vecInput.push_back("BDA");
+	vecInput.push_back("AEF"); // true
+	vecInput.push_back("C"); // true
 
-	RectTest.FindFinalRectPosition(RectTest.GetRandomRectVector());
+	RectTest.SkillTree(inputA, vecInput);
+	
+	// Largest Number [3, 30, 34, 5, 9]
+	std::vector<int> vecInput2;
+	vecInput2.push_back(3);
+	vecInput2.push_back(30);
+	vecInput2.push_back(34);
+	vecInput2.push_back(5);
+	vecInput2.push_back(9);
 
-	std::vector<int> vector;
+	RectTest.TheLargestNumber(vecInput2);
 
+	//RectTest.PrintInputPositions();
+
+	//RectTest.FindFinalRectPosition(RectTest.GetRandomRectVector());
+
+	//std::vector<int> vector;
+
+}
+
+
+/////////////////////////
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <stack>
+using namespace std;
+
+bool solution(vector<int> stones)
+{
+	unordered_map<int, bool> stone;
+	stack<int> stone_stack;	
+
+	int iCount = stones.size();
+
+	for (int i = 0; i < iCount; ++i)
+	{
+		stone[stones[i]] = true;
+	}
+
+	int Index = 0;
+	int iOffset = 1;
+
+	stone_stack.push(Index);
+	stone[Index] = false;
+	
+	unordered_map<int, bool>::iterator iterator;
+
+	for (; !stone_stack.empty();)
+	{
+		if (Index == stones[iCount - 1])
+			return true;
+
+		Index = stone_stack.top();
+		iterator = stone.find(Index + iOffset - 1);
+
+		if (iterator != stone.end() && iterator->second)
+		{
+			iterator->second = false;
+			stone_stack.push(iterator->first);
+			continue;
+		}
+
+		iterator = stone.find(Index + iOffset);
+
+		if (iterator != stone.end() && iterator->second)
+		{
+			iOffset += 1;
+			iterator->second = false;
+			stone_stack.push(iterator->first);
+			continue;
+		}
+
+		iterator = stone.find(Index + iOffset + 1);
+		if (iterator != stone.end() && iterator->second)
+		{
+			iOffset = iOffset + 2;
+
+			iterator->second = false;
+			stone_stack.push(iterator->first);
+			continue;
+		}
+
+		stone_stack.pop();
+	}
+
+	return false;
 }

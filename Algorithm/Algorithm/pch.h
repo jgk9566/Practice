@@ -5,6 +5,7 @@
 #include <memory> // for the smart pointers
 #include <functional> // for std::function
 #include <assert.h>
+#include <algorithm>
 
 // Data structure
 #include <vector>
