@@ -365,3 +365,66 @@ void CLineDemoTest::GenerateRandomRect()
 	m_vecRandomRect[3][0] = m_vecRandomRect[static_cast<int>(1 - iRandIdx)][0];
 	m_vecRandomRect[3][1] = m_vecRandomRect[iRandIdx][1];
 }
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+bool MovingStones(std::vector<int> stones)
+{
+	std::unordered_map<int, bool> stone;
+	std::stack<int> stone_stack;
+
+	int iCount = stones.size();
+
+	for (int i = 0; i < iCount; ++i)
+	{
+		stone[stones[i]] = true;
+	}
+
+	int Index = 0;
+	int iOffset = 1;
+
+	stone_stack.push(Index);
+	stone[Index] = false;
+
+	std::unordered_map<int, bool>::iterator iterator;
+
+	for (; !stone_stack.empty();)
+	{
+		if (Index == stones[iCount - 1])
+			return true;
+
+		Index = stone_stack.top();
+		iterator = stone.find(Index + iOffset - 1);
+
+		if (iterator != stone.end() && iterator->second)
+		{
+			iterator->second = false;
+			stone_stack.push(iterator->first);
+			continue;
+		}
+
+		iterator = stone.find(Index + iOffset);
+
+		if (iterator != stone.end() && iterator->second)
+		{
+			iOffset += 1;
+			iterator->second = false;
+			stone_stack.push(iterator->first);
+			continue;
+		}
+
+		iterator = stone.find(Index + iOffset + 1);
+		if (iterator != stone.end() && iterator->second)
+		{
+			iOffset = iOffset + 2;
+
+			iterator->second = false;
+			stone_stack.push(iterator->first);
+			continue;
+		}
+
+		stone_stack.pop();
+	}
+
+	return false;
+}
