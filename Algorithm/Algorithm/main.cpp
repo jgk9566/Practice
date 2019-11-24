@@ -38,6 +38,7 @@ void SetColsoleSize(int iWidth, int iHieght);
 // Classes and Structures
 struct _tagVector2;
 
+// *remember that only pointer class types can be forward declared.
 template<typename T, int a> class CTesting;
 class ABCD;
 class CEntity;
@@ -48,11 +49,6 @@ class CEnemy;
 int main()
 {
 	SetColsoleSize(1200, 540);
-
-	//ABCD* enty = new ABCD;
-
-	/*ABCD aa;
-	aa.PrintMyself();*/
 
 	// functions for testing
 	TestingQuickSort();
@@ -330,7 +326,7 @@ void TestingSelectionSort()
 
 	CSelectionSort pSelectionSort;
 	pSelectionSort.SelectionSort2(iArray, 30);
-	pSelectionSort.SelectionSort(vecData);
+	pSelectionSort.SelectionSort2(vecData);
 
 	std::cout << "After Sorting (array) : ";
 	Print(iArray, 30);
@@ -373,73 +369,4 @@ void TestingLineDemoAlgorithm()
 
 	//std::vector<int> vector;
 
-}
-
-
-/////////////////////////
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <stack>
-using namespace std;
-
-bool solution(vector<int> stones)
-{
-	unordered_map<int, bool> stone;
-	stack<int> stone_stack;	
-
-	int iCount = stones.size();
-
-	for (int i = 0; i < iCount; ++i)
-	{
-		stone[stones[i]] = true;
-	}
-
-	int Index = 0;
-	int iOffset = 1;
-
-	stone_stack.push(Index);
-	stone[Index] = false;
-	
-	unordered_map<int, bool>::iterator iterator;
-
-	for (; !stone_stack.empty();)
-	{
-		if (Index == stones[iCount - 1])
-			return true;
-
-		Index = stone_stack.top();
-		iterator = stone.find(Index + iOffset - 1);
-
-		if (iterator != stone.end() && iterator->second)
-		{
-			iterator->second = false;
-			stone_stack.push(iterator->first);
-			continue;
-		}
-
-		iterator = stone.find(Index + iOffset);
-
-		if (iterator != stone.end() && iterator->second)
-		{
-			iOffset += 1;
-			iterator->second = false;
-			stone_stack.push(iterator->first);
-			continue;
-		}
-
-		iterator = stone.find(Index + iOffset + 1);
-		if (iterator != stone.end() && iterator->second)
-		{
-			iOffset = iOffset + 2;
-
-			iterator->second = false;
-			stone_stack.push(iterator->first);
-			continue;
-		}
-
-		stone_stack.pop();
-	}
-
-	return false;
 }
