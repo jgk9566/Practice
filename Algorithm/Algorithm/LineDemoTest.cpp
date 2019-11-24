@@ -321,7 +321,7 @@ int CLineDemoTest::YootSolution(std::vector<int> inputList)
 		if (answer == 10)
 		{
 			bShortCut = true;
-		}		
+		}
 	}
 
 	return answer;
