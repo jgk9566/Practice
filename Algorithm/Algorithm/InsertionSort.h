@@ -21,5 +21,6 @@ public:
 	void InsertionSort3(int* pArr, int iSize);
 	void InsertionSort3(std::vector<int>& vecData);
 	void InsertionSort4(int* pArr, int isize);
+	void InsertionSort4(std::vector<int>& vecData);
 };
 

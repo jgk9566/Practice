@@ -276,7 +276,7 @@ void CInsertionSort::InsertionSort4(int* pArr, int iSize)
 {
 	int iKey = 0;
 
-	for (int iKeyIdx = 0; iKeyIdx < iSize; ++iKeyIdx)
+	for (int iKeyIdx = 1; iKeyIdx < iSize; ++iKeyIdx)
 	{
 		iKey = pArr[iKeyIdx];
 
@@ -292,6 +292,32 @@ void CInsertionSort::InsertionSort4(int* pArr, int iSize)
 			else
 			{
 				pArr[iCompare + 1] = iKey;
+				break;
+			}
+		}
+	}
+}
+
+void CInsertionSort::InsertionSort4(std::vector<int>& vecData)
+{
+	int iKey = 0;
+
+	for (size_t iKeyIdx = 1; iKeyIdx < vecData.size(); ++iKeyIdx)
+	{
+		iKey = vecData[iKeyIdx];
+
+		for (int iCompare = iKeyIdx - 1; iCompare >= 0; --iCompare)
+		{
+			if (vecData[iCompare] >= iKey)
+			{
+				vecData[iCompare + 1] = vecData[iCompare];
+
+				if (iCompare == 0)
+					vecData[iCompare] = iKey;
+			}
+			else
+			{
+				vecData[iCompare + 1] = iKey;
 				break;
 			}
 		}

@@ -21,6 +21,7 @@ public:
 	void QuickSort3(int* pData, int iStart, int iEnd);
 	void QuickSort3(std::vector<int>& vecData, int iStartIdx, int iEndIdx);
 	void QuickSort4(int* pData, int iStart, int iEnd);
+	void QuickSort4(std::vector<int>& vecData, int iStartIdx, int iEndIdx);
 
 private:
 	void Swap(int* iData, int iNum1, int iNum2);

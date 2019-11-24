@@ -261,7 +261,7 @@ int CLineDemoTest::Heightsolution(std::vector<int> heightList)
 	int nResult = 0;
 
 	int iPrevHeight = 0;
-	for (int i = 1; i < heightList.size(); ++i)
+	for (size_t i = 1; i < heightList.size(); ++i)
 	{
 		iPrevHeight = heightList[i - 1];
 		if (iPrevHeight > heightList[i])
@@ -357,7 +357,7 @@ void CLineDemoTest::GenerateRandomRect()
 		m_vecRandomRect[i][1] = iY;
 	}
 
-	int iRandIdx = rand() % 2;
+	unsigned int iRandIdx = rand() % 2;
 
 	m_vecRandomRect[2][0] = m_vecRandomRect[iRandIdx][0];
 	m_vecRandomRect[2][1] = m_vecRandomRect[static_cast<int>(1 - iRandIdx)][1];
@@ -373,9 +373,9 @@ bool MovingStones(std::vector<int> stones)
 	std::unordered_map<int, bool> stone;
 	std::stack<int> stone_stack;
 
-	int iCount = stones.size();
+	unsigned int iCount = static_cast<unsigned int>(stones.size());
 
-	for (int i = 0; i < iCount; ++i)
+	for (unsigned int i = 0; i < iCount; ++i)
 	{
 		stone[stones[i]] = true;
 	}

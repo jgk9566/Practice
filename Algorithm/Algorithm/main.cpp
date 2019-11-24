@@ -149,9 +149,7 @@ void Push(T& container, int iCount)
 class ABCD
 {
 public:
-	ABCD()
-	{
-	} // = default;
+	ABCD() = default;
 	ABCD(const int& aa) :
 		iNumber(aa),
 		strName("Unknown")
@@ -278,7 +276,7 @@ void TestingQuickSort()
 	// Sort those random numbers
 	CQuickSort QuickSort;
 	QuickSort.QuickSort4(Array, 0, 29);
-	QuickSort.QuickSort3(vecData, 0, static_cast<int>(vecData.size() - 1));
+	QuickSort.QuickSort4(vecData, 0, static_cast<int>(vecData.size() - 1));
 
 	// Print sorted numbers
 	std::cout << "After Sorting(array) : ";
@@ -301,7 +299,7 @@ void TestingInsertionSort()
 	CInsertionSort InsertionSortVector(vecData);
 
 	InsertionSortArray.InsertionSort4(Array, 30);
-	InsertionSortVector.InsertionSort3(vecData);
+	InsertionSortVector.InsertionSort4(vecData);
 
 	std::cout << "After Sorting(array) : ";
 	Print(Array, 30);
