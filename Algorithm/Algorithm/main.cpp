@@ -38,6 +38,7 @@ void SetColsoleSize(int iWidth, int iHieght);
 // Classes and Structures
 struct _tagVector2;
 
+// *remember that only pointer class types can be forward declared.
 template<typename T, int a> class CTesting;
 class ABCD;
 class CEntity;
@@ -48,11 +49,6 @@ class CEnemy;
 int main()
 {
 	SetColsoleSize(1200, 540);
-
-	//ABCD* enty = new ABCD;
-
-	/*ABCD aa;
-	aa.PrintMyself();*/
 
 	// functions for testing
 	TestingQuickSort();
@@ -330,7 +326,7 @@ void TestingSelectionSort()
 
 	CSelectionSort pSelectionSort;
 	pSelectionSort.SelectionSort2(iArray, 30);
-	pSelectionSort.SelectionSort(vecData);
+	pSelectionSort.SelectionSort2(vecData);
 
 	std::cout << "After Sorting (array) : ";
 	Print(iArray, 30);
