@@ -57,6 +57,9 @@
     <ClCompile Include="LineDemoTest.cpp">
       <Filter>소스 파일\05. Practice Algorithm</Filter>
     </ClCompile>
+    <ClCompile Include="Programmers.cpp">
+      <Filter>소스 파일\05. Practice Algorithm</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QuickSort.h">
@@ -87,6 +90,9 @@
       <Filter>소스 파일\01. Sort Algorithm</Filter>
     </ClInclude>
     <ClInclude Include="LineDemoTest.h">
+      <Filter>소스 파일\05. Practice Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="Programmers.h">
       <Filter>소스 파일\05. Practice Algorithm</Filter>
     </ClInclude>
   </ItemGroup>

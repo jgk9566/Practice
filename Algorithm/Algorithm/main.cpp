@@ -9,6 +9,7 @@
 #include "Timer.h"
 #include "SelectionSort.h"
 #include "LineDemoTest.h"
+#include "Programmers.h"
 
 
 // Function for preventing closing the consol winow rightaway
@@ -56,6 +57,9 @@ int main()
 	TestingSelectionSort();
 
 	TestingLineDemoAlgorithm();
+
+
+	CProgrammers test;
 
 	DontQuitConsole();
 
