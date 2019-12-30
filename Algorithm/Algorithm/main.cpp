@@ -60,6 +60,12 @@ int main()
 
 
 	CProgrammers test;
+	std::vector<int> progresses = {93, 30, 55, 90, 10};
+	std::vector<int> speeds = {1, 30, 5, 5, 10};
+	std::vector<int> answers = { 1, 3, 2, 4, 2 };
+
+	test.Exam(answers);
+	
 
 	DontQuitConsole();
 
